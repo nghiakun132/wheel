@@ -13,26 +13,31 @@ class Reward extends Seeder
      */
     public function run(): void
     {
-        ModelsReward::insert([[
-            'shop_name' => 'Shop 1',
-            'reward_name' => 'PIN',
-            'reward_quantity' => 10,
-            'images' => 'images/PIN.png',
-        ], [
-            'shop_name' => 'Shop 1',
-            'reward_name' => 'Keychain',
-            'reward_quantity' => 10,
-            'images' => 'images/Keychain.png',
-        ], [
-            'shop_name' => 'Shop 1',
-            'reward_name' => 'STICKER',
-            'reward_quantity' => 10,
-            'images' => 'images/STICKER.png',
-        ], [
-            'shop_name' => 'Shop 1',
-            'reward_name' => 'Voucher',
-            'reward_quantity' => 10,
-            'images' => 'images/Voucher.png',
-        ]]);
+        ModelsReward::insert([
+            [
+                'shop_name' => 'Shop 1',
+                'reward_name' => 'Pin',
+                'reward_quantity' => 10,
+                'images' => 'image/pin.png',
+            ],
+            [
+                'shop_name' => 'Shop 1',
+                'reward_name' => 'Voucher',
+                'reward_quantity' => 10,
+                'images' => 'image/voucher.png',
+            ],
+            [
+                'shop_name' => 'Shop 1',
+                'reward_name' => 'Móc khóa',
+                'reward_quantity' => 10,
+                'images' => 'image/mockhoa.png',
+            ],
+            [
+                'shop_name' => 'Shop 1',
+                'reward_name' => 'Sticker',
+                'reward_quantity' => 10,
+                'images' => 'image/sticker.png',
+            ],
+        ]);
     }
 }

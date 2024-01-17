@@ -23,4 +23,11 @@ class RewardController extends Controller
 
         return redirect()->route('admin.reward.index');
     }
+
+    public function rewarded()
+    {
+        $rewards = Reward::withCount('rewarded')->get();
+
+        return view('admin.rewarded.index', compact('rewards'));
+    }
 }

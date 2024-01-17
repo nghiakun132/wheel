@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reward extends Model
+class RewardUser extends Model
 {
     use HasFactory;
 
-    public function rewarded()
-    {
-        return $this->hasMany(RewardUser::class);
-    }
+    protected $table = 'reward_users';
+
+    protected $fillable = [
+        'user_id',
+        'reward_id',
+    ];
 }

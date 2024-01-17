@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="canonical" href="{{ config('app.url') }}" />
 
@@ -44,7 +45,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="">
+                        <a class="sidebar-link" href="{{route('admin.rewarded')}}">
                             <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
                                 Quà đã sử dụng
                             </span>
