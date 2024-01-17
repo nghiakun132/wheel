@@ -9,10 +9,27 @@ use Illuminate\Support\Arr;
 
 class HomeController extends Controller
 {
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials)) {
+            return redirect()->route('index');
+        }
+
+        return redirect()->back()->with('error', 'Email hoặc mật khẩu không đúng');
+    }
+
+
     public function index()
     {
         $questions = Question::with('answers')->get();
-        $rewards = Reward::all();
+        $rewards = Reward::where('shop_name', auth()->user()->name)->get();
 
         $backgrounds = [
             1 => '#1abc9c',
@@ -29,7 +46,7 @@ class HomeController extends Controller
                 $listRewardHaveQuantity[] = $value;
             }
 
-            $value->background = $backgrounds[$value->id];
+            $value->background = $backgrounds[$key + 1];
         }
         $rewardIds = $rewards->pluck('id')->toArray();
         $listRewardHaveQuantity = (Arr::pluck($listRewardHaveQuantity, 'id'));
@@ -52,5 +69,4 @@ class HomeController extends Controller
 
         return $randomProduct;
     }
-
 }

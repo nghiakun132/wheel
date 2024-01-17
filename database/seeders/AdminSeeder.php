@@ -17,6 +17,7 @@ class AdminSeeder extends Seeder
             'name' => config('app.admin.name'),
             'email' => config('app.admin.email'),
             'password' => bcrypt(config('app.admin.password')),
+            'role' => 'admin',
         ]]);
     }
 }

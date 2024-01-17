@@ -9,7 +9,7 @@ class RewardController extends Controller
 {
     public function index()
     {
-        $rewards = Reward::all();
+        $rewards = Reward::where('shop_name', auth()->user()->name)->get();
 
         return view('admin.reward.index', compact('rewards'));
     }

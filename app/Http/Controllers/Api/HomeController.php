@@ -21,6 +21,7 @@ class HomeController extends Controller
             $user->name = $request->name;
             $user->phone = $request->phone;
             $user->email = $request->email;
+            $user->shop_name = $request->shop_name;
             $user->save();
 
             $answer = $request->answer;
@@ -33,7 +34,9 @@ class HomeController extends Controller
                 $survey->save();
             }
 
-            $reward = Reward::where('reward_name', $request->reward)->first();
+            $reward = Reward::where('reward_name', $request->reward)
+                ->where('shop_name', $request->shop_name)
+                ->first();
 
             $reward_user = new RewardUser();
             $reward_user->user_id = $user->id;
@@ -48,13 +51,11 @@ class HomeController extends Controller
             return response()->json([
                 'message' => 'success',
             ]);
-
         } catch (Exception $e) {
             DB::rollBack();
             return response()->json([
                 'message' => 'error',
             ]);
         }
-
     }
 }

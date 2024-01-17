@@ -15,25 +15,25 @@ class Reward extends Seeder
     {
         ModelsReward::insert([
             [
-                'shop_name' => 'Shop 1',
+                'shop_name' => 'Admin',
                 'reward_name' => 'Pin',
                 'reward_quantity' => 10,
                 'images' => 'image/pin.png',
             ],
             [
-                'shop_name' => 'Shop 1',
+                'shop_name' => 'Admin',
                 'reward_name' => 'Voucher',
                 'reward_quantity' => 10,
                 'images' => 'image/voucher.png',
             ],
             [
-                'shop_name' => 'Shop 1',
+                'shop_name' => 'Admin',
                 'reward_name' => 'Móc khóa',
                 'reward_quantity' => 10,
                 'images' => 'image/mockhoa.png',
             ],
             [
-                'shop_name' => 'Shop 1',
+                'shop_name' => 'Admin',
                 'reward_name' => 'Sticker',
                 'reward_quantity' => 10,
                 'images' => 'image/sticker.png',

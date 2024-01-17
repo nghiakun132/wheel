@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('./font/iCiel-SamsungSharpSans-Bold_SMCPS.ttf') format('truetype');
+    /* src: url('./font/SamsungSharpSans-Medium_SMCP 2.ttf') format('truetype');
+    src: url('./font/SamsungSharpSans-Regular_SMCPS 5.ttf') format('truetype');
+    src: url('./font/Signature Samsung.otf') format('truetype'); */
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'MyCustomFont';
+}
