@@ -7,18 +7,18 @@
 
             <div class="">
                 <div class="mb-3 form-group">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="name" class="form-label fw-bold">Họ & tên</label>
                     <input type="text" class="form-control" id="name" name="name"
                         oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
                 </div>
 
                 <div class="mb-3 form-group">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label fw-bold">Email</label>
                     <input type="email" class="form-control" id="email" name="email"
                         oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
                 </div>
                 <div class="mb-3 form-group">
-                    <label for="phone" class="form-label">Phone</label>
+                    <label for="phone" class="form-label fw-bold">Số điện thoại</label>
                     <input type="text" class="form-control" id="phone" name="phone"
                         oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
                 </div>

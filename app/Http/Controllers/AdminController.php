@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportSurvey;
 use Illuminate\Http\Request;
+use Excel;
 
 class AdminController extends Controller
 {
@@ -32,5 +34,10 @@ class AdminController extends Controller
         auth()->guard('admin')->logout();
 
         return redirect()->route('admin.login');
+    }
+
+    public function export()
+    {
+        Excel::store(new ExportSurvey, 'survey.xlsx', 'public');
     }
 }

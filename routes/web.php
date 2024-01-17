@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+        Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
 
         Route::prefix('reward')->group(function () {
             Route::get('/', [RewardController::class, 'index'])->name('admin.reward.index');

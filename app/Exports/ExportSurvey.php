@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Exports;
+
+use App\Models\Survey;
+use App\Models\User;
+use Illuminate\Support\Arr;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+
+class ExportSurvey implements FromQuery, WithHeadings, WithMapping
+{
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+
+
+    public function query(): \Illuminate\Database\Eloquent\Builder
+    {
+        return User::with(['survey.question', 'survey.answer', 'reward.reward']);
+    }
+
+    public function headings(): array
+    {
+        return [
+            'id',
+            'store_name',
+            'name',
+            'email',
+            'phone',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            'gift',
+            'dateadd',
+        ];
+    }
+
+    public function map($user): array
+    {
+        $arrayAnswer = [];
+        $answer = $user->survey;
+
+        foreach ($answer as $key => $value) {
+            $arrayAnswer['cau_' . $value->question_id] = $value->answer->answer;
+        }
+
+        return [
+            $user->id,
+            $user->reward->reward->shop_name,
+            $user->name,
+            $user->email,
+            $user->phone,
+            Arr::get($arrayAnswer, 'cau_1'),
+            Arr::get($arrayAnswer, 'cau_2'),
+            Arr::get($arrayAnswer, 'cau_3'),
+            Arr::get($arrayAnswer, 'cau_4'),
+            Arr::get($arrayAnswer, 'cau_5'),
+            $user->reward->reward->reward_name,
+            $user->created_at,
+        ];
+    }
+}

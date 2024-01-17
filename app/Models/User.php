@@ -23,4 +23,14 @@ class User extends Authenticatable
         'password',
         'phone'
     ];
+
+    public function survey()
+    {
+        return $this->hasMany(Survey::class);
+    }
+
+    public function reward()
+    {
+        return $this->hasOne(RewardUser::class);
+    }
 }

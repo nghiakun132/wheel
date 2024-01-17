@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="mb-0 text-center">
-                                    <button type="button" class="btn btn-success">Export</button>
+                                    <a href="{{route('admin.export')}}" class="btn btn-success">Export</button>
                                 </div>
                             </div>
                         </div>

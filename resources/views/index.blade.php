@@ -17,7 +17,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'UA-130950821-1');
@@ -177,7 +180,7 @@
                             value: {{ $reward-> id}},
                             quantity: {{$reward->reward_quantity}}
                         },
-                @endforeach
+                        @endforeach
                     ],
                 text: {
                 color: '#CFD8DC',
@@ -204,9 +207,8 @@
 
             var tick = new Audio('{{asset("wheel/media/tick.mp3")}}');
 
-
             $("#btn-spin").on('click', function () {
-                $('.wheel-standard').superWheel('start', 'value', Math.floor(Math.random() * 4));
+                $('.wheel-standard').superWheel('start', 'value', {{$randomProduct}});
                 $(this).prop('disabled', true);
             });
 
