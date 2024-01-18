@@ -47,6 +47,10 @@
         bottom: 10px;
         position: fixed;
     }
+
+    .swal2-container {
+        position: absolute !important;
+    }
 </style>
 
 <body>
@@ -65,7 +69,7 @@
                         @include('home.wheel')
                     </div>
                 </form>
-                <div class="d-flex justify-content-center mt-4">
+                <div id="button_groub" class="d-flex justify-content-center mt-4">
                     <button class="btn btn-primary" id="next-btn" onclick="nextPrev(1)">Next</button>
 
                     <button class="btn btn-primary" type="button" id="btn-spin" style="display:none" onclick="">
@@ -92,15 +96,26 @@
 
                 if (n == 0) {
                     $("#prev-btn").hide();
+                    $("#button_groub").css({
+                        "position": "absolute",
+                        "bottom": "15px"
+                    });
                     $("#form-footer").removeClass("justify-content-between").addClass("justify-content-end");
 
                 } else {
                     $("#prev-btn").css("display", "inline");
-                    $('.d-flex').css('position', 'relative!important');
+                    $("#button_groub").css({
+                        "position": "relative",
+                        "bottom": "15px"
+                    });
                     $("#form-footer").removeClass("justify-content-end").addClass("justify-content-between");
                 }
 
                 if (n == (x.length - 1)) {
+                    $("#button_groub").css({
+                        "position": "absolute",
+                        "bottom": "15px"
+                    });
                     $('#next-btn').hide();
                     $('#btn-spin').show();
                 } else {
@@ -179,7 +194,7 @@
                 // Cập nhật tên của nút
 
 
-                $(this).text("Spining...");
+                $(this).text("SPINING...");
             });
 
             $("#Circle-row").one("transitionend", function () {
@@ -210,13 +225,12 @@
                         type: 'success',
                         title: "Congratulations!",
                         'html': name + ' <br><br><b><img src="' +  image +
-                            '"" width="100px" height="100px" /></b>'
+                            '"" height="150px" /></b>'
                         
                     })
                     .then((result) => {
-                        if (result.value) {
-                            callAjax(data);
-                        }
+                        callAjax(data);
+                        
                     })
                 });
 

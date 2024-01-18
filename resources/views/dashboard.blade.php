@@ -51,7 +51,7 @@
     <div class="container-fluid">
         <section class="register">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-top: 30px;">
                     <div class="logo">
                         <img src="{{ asset('image/luckydraw-images-02.png') }}" width="70%" />
                     </div>
