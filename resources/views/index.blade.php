@@ -54,7 +54,7 @@
                         @include('home.wheel')
                     </div>
                 </form>
-                <div class="d-flex justify-content-center mt-4" style="position: fixed; bottom: 10%">
+                <div class="d-flex justify-content-center mt-4">
                     <button class="btn btn-primary" id="next-btn" onclick="nextPrev(1)">Next</button>
 
                     <button class="btn btn-danger" type="button" id="btn-spin" style="display:none" onclick="">
