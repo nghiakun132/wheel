@@ -83,7 +83,11 @@ class StoreController extends Controller
 
     public function delete($id)
     {
-        Admin::find($id)->delete();
+        $admin = Admin::find($id);
+        
+        Reward::where('shop_name', $admin->name)->delete();
+
+        $admin->delete();
 
         return redirect()->back();
     }
