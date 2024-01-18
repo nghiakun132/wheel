@@ -18,6 +18,12 @@ return new class extends Migration
             $table->integer('reward_quantity')->nullable();
             $table->string('images')->nullable();
             $table->timestamps();
+
+            $table->index('shop_name', 'rewards_shop_name_index');
+            $table->index('reward_name', 'rewards_reward_name_index');
+            $table->index('reward_quantity', 'rewards_reward_quantity_index');
+            $table->index('images', 'rewards_images_index');
+
         });
     }
 

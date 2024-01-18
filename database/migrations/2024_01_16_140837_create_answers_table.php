@@ -16,6 +16,8 @@ return new class extends Migration
             $table->bigInteger('question_id')->nullable();
             $table->string('answer')->nullable();
             $table->timestamps();
+
+            $table->index('question_id', 'answers_question_id_index');
         });
     }
 

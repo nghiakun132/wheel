@@ -16,6 +16,10 @@ return new class extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->bigInteger('reward_id')->nullable();
             $table->timestamps();
+
+            $table->index('user_id', 'reward_users_user_id_index');
+            $table->index('reward_id', 'reward_users_reward_id_index');
+            
         });
     }
 

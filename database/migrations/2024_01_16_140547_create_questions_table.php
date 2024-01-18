@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('question')->nullable();
             $table->timestamps();
+
+            $table->index('question', 'questions_question_index');
         });
     }
 

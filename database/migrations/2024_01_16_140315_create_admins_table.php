@@ -19,6 +19,13 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('role')->default('store');
             $table->timestamps();
+
+            $table->index('name', 'admins_name_index');
+            $table->index('email', 'admins_email_index');
+            $table->index('phone', 'admins_phone_index');
+            $table->index('role', 'admins_role_index');
+
+
         });
     }
 
