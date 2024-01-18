@@ -19,7 +19,7 @@ class ExportSurvey implements FromQuery, WithHeadings, WithMapping
 
     public function query(): \Illuminate\Database\Eloquent\Builder
     {
-        return User::where('shop_name', auth()->user()->name)->with(['survey.question', 'survey.answer', 'reward.reward']);
+        return User::where('shop_name', '<>', config('app.admin.name'))->with(['survey.question', 'survey.answer', 'reward.reward']);
     }
 
     public function headings(): array

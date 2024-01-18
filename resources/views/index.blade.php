@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="stylesheet" href="{{ asset('wheel/css/sweetalert2.min.css') }}"> 
     <link rel="manifest" href="{{asset('manifest.json')}}">
     <link rel="stylesheet" href="{{ asset('wheel/css/style.css') }}">
@@ -54,7 +54,7 @@
                         @include('home.wheel')
                     </div>
                 </form>
-                <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-center mt-4" style="position: fixed; bottom: 10%">
                     <button class="btn btn-primary" id="next-btn" onclick="nextPrev(1)">Next</button>
 
                     <button class="btn btn-danger" type="button" id="btn-spin" style="display:none" onclick="">

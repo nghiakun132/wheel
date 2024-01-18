@@ -3,6 +3,7 @@
 <div class="container-fluid p-0">
     <div class="row">
         <div class="col-xl-12 col-xxl-12 d-flex">
+            @if (auth()->user()->role == 'admin')
             <div class="w-100">
                 <div class="row">
                     <div class="col-sm-6">
@@ -23,8 +24,9 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>
-    
+
 @endsection
