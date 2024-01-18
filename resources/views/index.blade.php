@@ -219,11 +219,11 @@
                     },
                     success: function(response) {
                         if (response.message == 'success') {
-                            window.location.href = "{{route('index')}}"
+                            window.location.href = "{{route('dashboard')}}"
                         }
                     },
                     error: function (response) {
-                        window.location.href = "{{route('index')}}"
+                        window.location.href = "{{route('dashboard')}}"
                     }
                 });
             }
