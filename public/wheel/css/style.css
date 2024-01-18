@@ -121,3 +121,32 @@ input[type=submit]:hover {
   padding-left: 10px;
 
 }
+
+#Circle-01 {
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  margin-left: -28px;
+  margin-top: -38px;
+}
+
+#Circle-row {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 50%;
+    background-color: blue;
+    position: relative;
+    transition: transform 5s ease-out
+}
+
+#Circle-02 {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 50%;
+    position: relative;
+    text-align: center
+}
+
+#Circle-02>svg {
+    width: 50px
+}

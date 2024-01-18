@@ -8,21 +8,25 @@
                     Số lượng quà đã sử dụng
                 </h4>
                 <div class="row">
-                    @foreach ($rewards as $item)
+                    @foreach ($rewards as $key => $group)
+                    <h4>
+                        {{ $key }}
+                    </h4>
+                        @foreach ($group as $item)
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
 
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-
-                                <div class="mb-0 text-center">
-                                    <img src="{{ asset($item->images) }}" width="150" height="150" >
-                                </div>
-                                <div class="d-flex justify-content-center align-items-center mt-3">
-                                    <span class="badge bg-success">{{ $item->rewarded_count }}</span>
+                                    <div class="mb-0 text-center">
+                                        <img src="{{ asset($item->images) }}" width="150" height="150">
+                                    </div>
+                                    <div class="d-flex justify-content-center align-items-center mt-3">
+                                        <span class="badge bg-success">{{ $item->rewarded_count }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        @endforeach
                     @endforeach
                 </div>
 

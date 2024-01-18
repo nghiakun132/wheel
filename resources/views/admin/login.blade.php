@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
     <meta name="author" content="AdminKit">
-    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-    <title>Sign-in</title>
+    <meta name="keywords"
+        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+    <title>{{config('app.name')}}</title>
 
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center mt-4">
-                            <h1 class="h2">Welcome back!</h1>
+                            <h1 class="h2">Đăng nhập!</h1>
                         </div>
 
                         <div class="card">
@@ -32,14 +33,15 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+                                            <input class="form-control form-control-lg" type="email" name="email" />
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Password</label>
-                                            <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
+                                            <label class="form-label">Mật khẩu</label>
+                                            <input class="form-control form-control-lg" type="password"
+                                                name="password" />
                                         </div>
                                         <div class="d-grid gap-2 mt-3">
-                                            <button type="submit" class="btn btn-lg btn-primary">Sign in</a>
+                                            <button type="submit" class="btn btn-lg btn-primary">Đăng nhập</a>
                                         </div>
                                     </form>
                                 </div>

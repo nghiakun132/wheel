@@ -15,6 +15,7 @@ class HomeController extends Controller
 {
     public function submit(Request $request)
     {
+
         DB::beginTransaction();
         try {
             $user = new User();
@@ -34,7 +35,7 @@ class HomeController extends Controller
                 $survey->save();
             }
 
-            $reward = Reward::where('reward_name', $request->reward)
+            $reward = Reward::where('id', $request->reward)
                 ->where('shop_name', $request->shop_name)
                 ->first();
 

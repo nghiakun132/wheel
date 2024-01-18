@@ -50,15 +50,15 @@ class StoreController extends Controller
         Reward::insert([
             [
                 'shop_name' => $request->name,
-                'reward_name' => 'Pin',
-                'reward_quantity' => 10,
-                'images' => 'image/pin.png',
-            ],
-            [
-                'shop_name' => $request->name,
                 'reward_name' => 'Voucher',
                 'reward_quantity' => 10,
                 'images' => 'image/voucher.png',
+            ],
+            [
+                'shop_name' => $request->name,
+                'reward_name' => 'Sticker',
+                'reward_quantity' => 10,
+                'images' => 'image/sticker.png',
             ],
             [
                 'shop_name' => $request->name,
@@ -66,11 +66,12 @@ class StoreController extends Controller
                 'reward_quantity' => 10,
                 'images' => 'image/mockhoa.png',
             ],
+    
             [
                 'shop_name' => $request->name,
-                'reward_name' => 'Sticker',
+                'reward_name' => 'Pin',
                 'reward_quantity' => 10,
-                'images' => 'image/sticker.png',
+                'images' => 'image/pin.png',
             ],
         ]);
 

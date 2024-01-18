@@ -29,6 +29,7 @@
                         {{ config('app.name', 'Laravel') }}
                     </span>
                 </a>
+
                 <ul class="sidebar-nav">
                     <li class="sidebar-item active">
                         <a class="sidebar-link" href="{{ route('admin.index') }}">
@@ -36,7 +37,7 @@
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
-
+                    @if (auth()->user()->role == 'admin')
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('admin.reward.index') }}">
                             <i class="align-middle" data-feather="user"></i> <span class="align-middle">
@@ -52,14 +53,14 @@
                             </span>
                         </a>
                     </li>
-                    @if (auth()->user()->role == 'admin')
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.store') }}">
-                                <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
-                                    Store
-                                </span>
-                            </a>
-                        </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('admin.store') }}">
+                            <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
+                                Store
+                            </span>
+                        </a>
+                    </li>
                     @endif
 
                 </ul>
@@ -161,24 +162,24 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const formChangePassword = document.querySelector('#form-change-password');
             const btnChangePass = document.querySelector('#change-password .btn-primary');
-            btnChangePass.addEventListener('click', function() {
+            btnChangePass.addEventListener('click', function () {
                 $.ajax({
                     url: formChangePassword.action,
                     method: formChangePassword.method,
                     data: $(formChangePassword).serialize(),
-                    success: function(data) {
+                    success: function (data) {
                         if (data.status) {
                             window.location.reload();
                         }
                     },
-                    error: function(error) {
+                    error: function (error) {
                         let message = error.responseJSON.message;
 
 
-                        Object.keys(message).forEach(function(key) {
+                        Object.keys(message).forEach(function (key) {
                             $("#" + key).addClass('is-invalid');
 
                             $("#err-" + key).text(message[key].toString());

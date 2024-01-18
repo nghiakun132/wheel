@@ -7,8 +7,12 @@
                     <h4>
                         Nhập số lượng quà tặng thêm
                     </h4>
-                    <div class="row">
-                        @foreach ($rewards as $item)
+                    <div class="row mt-4">
+                        @foreach ($rewards as $key => $group)
+                        <h3>
+                           Tên shop: {{$key}}
+                        </h3>
+                            @foreach($group as $item)
                             <div class="col-sm-6">
                                 <div class="card">
                                     <div class="card-body">
@@ -30,6 +34,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         @endforeach
                     </div>
 

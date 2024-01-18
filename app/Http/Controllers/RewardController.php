@@ -9,7 +9,10 @@ class RewardController extends Controller
 {
     public function index()
     {
-        $rewards = Reward::where('shop_name', auth()->user()->name)->get();
+        $rewards = Reward::where('shop_name', '<>', config('app.admin.name'))
+            ->get();
+
+        $rewards = $rewards->groupBy('shop_name');
 
         return view('admin.reward.index', compact('rewards'));
     }
@@ -26,7 +29,11 @@ class RewardController extends Controller
 
     public function rewarded()
     {
-        $rewards = Reward::withCount('rewarded')->get();
+        $rewards = Reward::
+            where('shop_name', '<>', config('app.admin.name'))
+            ->withCount('rewarded')->get();
+
+        $rewards = $rewards->groupBy('shop_name');
 
         return view('admin.rewarded.index', compact('rewards'));
     }
