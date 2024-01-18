@@ -27,28 +27,46 @@ class HomeController extends Controller
                 $listRewardHaveQuantity[] = $value;
             }
         }
-        $rewardIds = $rewards->pluck('id')->toArray();
+        $rewardIds = $rewards->toArray();
+      
         $listRewardHaveQuantity = (Arr::pluck($listRewardHaveQuantity, 'id'));
 
-        $randomProduct = $this->getRandomProductExcluding($rewardIds, $listRewardHaveQuantity);
+        $randomProducts = $this->getRandomProductExcluding($rewardIds, $listRewardHaveQuantity);
+        $randomProduct = $randomProducts['id'];
+     
+        $image = asset($randomProducts['images']);
 
-        $rw = Reward::where('id', $randomProduct)->first();
-
-        $image = asset($rw->images);
-
-        $name = $rw->reward_name;
+        $name = $randomProducts['reward_name'];
 
         return view('index', compact('questions', 'rewards', 'randomProduct', 'image', 'name'));
     }
 
-    protected function getRandomProductExcluding($products, $excludedIds)
+    function getRandomProductExcluding($products, $excludedIds)
     {
+        // Lọc ra những sản phẩm có số lượng lớn hơn 0 và không nằm trong danh sách loại trừ
         $availableProducts = array_filter($products, function ($product) use ($excludedIds) {
-            return in_array($product, $excludedIds);
+            return $product['reward_quantity'] > 0 && in_array($product['id'], $excludedIds);
         });
 
-        $randomProduct = $availableProducts[array_rand($availableProducts)];
+        // Tính tổng số lượng
+        $totalQuantity = array_sum(array_column($availableProducts, 'reward_quantity'));
+  
+        // Tính tỉ lệ phần trăm cho từng sản phẩm dựa trên số lượng giảm dần
+        $tilesanpham = array_map(function ($product) use ($totalQuantity) {
+            return $product['reward_quantity'] / $totalQuantity;
+        }, $availableProducts);
 
-        return $randomProduct;
+        $randomNumber =  rand(0, 100) / 100;
+   
+        // Chọn sản phẩm dựa trên số ngẫu nhiên
+        $cumulativePercentage = 0;
+        foreach ($tilesanpham as $index => $tile) {
+            $cumulativePercentage += $tile;
+            if ($randomNumber <= $cumulativePercentage) {
+                return $availableProducts[$index];
+            }
+        }
+
+        return null;
     }
 }

@@ -17,42 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    function chonSanPhamNgauNhien($soLuongSanPham)
-    {
-        // Tính tổng số lượng
-        $tongSoLuong = array_sum($soLuongSanPham);
-
-        // Tính tỉ lệ phần trăm cho từng sản phẩm
-        $tilesanpham = array_map(function ($soLuong) use ($tongSoLuong) {
-            return $soLuong / $tongSoLuong;
-        }, $soLuongSanPham);
-
-        // Tạo số ngẫu nhiên từ 0 đến 1
-        $soNgauNhien = rand(0, 100) / 100;
-
-        // Chọn sản phẩm dựa trên số ngẫu nhiên
-        $cumulativePercentage = 0;
-        foreach ($tilesanpham as $index => $tile) {
-            $cumulativePercentage += $tile;
-            if ($soNgauNhien <= $cumulativePercentage) {
-                return "Sản phẩm " . ($index + 1);
-            }
-        }
-
-        return "Không có sản phẩm nào được chọn.";
-    }
-
-    // Số lượng của các sản phẩm (có thể là một mảng động)
-    $soLuongSanPham = [310, 0, 10, 15, 25];
-
-    // Gọi hàm để chọn sản phẩm ngẫu nhiên
-    $sanPhamDuocChon = chonSanPhamNgauNhien($soLuongSanPham);
-
-    // Xuất kết quả
-    echo "Sản phẩm được chọn ngẫu nhiên: " . $sanPhamDuocChon;
-});
-
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/login', [AdminController::class, 'postLogin'])->name('admin.postLogin');
 
