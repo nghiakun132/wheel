@@ -39,29 +39,29 @@
                         </a>
                     </li>
                     @if (auth()->user()->role == 'admin')
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('admin.reward.index') }}">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">
-                                Quà tặng
-                            </span>
-                        </a>
-                    </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.reward.index') }}">
+                                <i class="align-middle" data-feather="user"></i> <span class="align-middle">
+                                    Quà tặng
+                                </span>
+                            </a>
+                        </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('admin.rewarded') }}">
-                            <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
-                                Quà đã sử dụng
-                            </span>
-                        </a>
-                    </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.rewarded') }}">
+                                <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
+                                    Quà đã sử dụng
+                                </span>
+                            </a>
+                        </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('admin.store') }}">
-                            <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
-                                Store
-                            </span>
-                        </a>
-                    </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.store') }}">
+                                <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">
+                                    Store
+                                </span>
+                            </a>
+                        </li>
                     @endif
 
                 </ul>
@@ -161,26 +161,31 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
             const formChangePassword = document.querySelector('#form-change-password');
             const btnChangePass = document.querySelector('#change-password .btn-primary');
-            btnChangePass.addEventListener('click', function () {
+            btnChangePass.addEventListener('click', function() {
                 $.ajax({
                     url: formChangePassword.action,
                     method: formChangePassword.method,
                     data: $(formChangePassword).serialize(),
-                    success: function (data) {
+                    success: function(data) {
                         if (data.status) {
                             window.location.reload();
                         }
                     },
-                    error: function (error) {
+                    error: function(error) {
                         let message = error.responseJSON.message;
 
 
-                        Object.keys(message).forEach(function (key) {
+                        Object.keys(message).forEach(function(key) {
                             $("#" + key).addClass('is-invalid');
 
                             $("#err-" + key).text(message[key].toString());

@@ -13,7 +13,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $stores =Admin::where('name', '<>', config('app.admin.name'))->get();
+
+        return view('admin.index', compact('stores'));
     }
 
     public function login()
@@ -26,6 +28,10 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->guard('admin')->attempt($credentials)) {
+            if(auth()->guard('admin')->user()->role == 'admin'){
+                return redirect()->route('admin.index');
+            }
+            
             return redirect()->route('dashboard');
         }
 
@@ -39,13 +45,14 @@ class AdminController extends Controller
         return redirect()->route('admin.login');
     }
 
-    public function export()
+    public function export(Request $request)
     {
 
+       
         $fileName = 'survey_' . date('d-m-Y') . '.xlsx';
 
         Excel::store(
-            new ExportSurvey,
+            new ExportSurvey($request->all()),
             "report/{$fileName}",
             'public'
         );

@@ -19,18 +19,23 @@ class RewardController extends Controller
 
     public function update(Request $request)
     {
-        $reward = Reward::find($request->id);
-        $reward->reward_quantity = $request->reward_quantity;
+        $quantity = $request->quantity;
 
-        $reward->save();
+        foreach ($quantity as $key => $value) {
+            $reward = Reward::find($value['id']);
+
+            if ($reward->reward_quantity != (int)$value['quantity']) {
+                $reward->reward_quantity = (int)$value['quantity'];
+                $reward->save();
+            }
+        }
 
         return redirect()->route('admin.reward.index');
     }
 
     public function rewarded()
     {
-        $rewards = Reward::
-            where('shop_name', '<>', config('app.admin.name'))
+        $rewards = Reward::where('shop_name', '<>', config('app.admin.name'))
             ->withCount('rewarded')->get();
 
         $rewards = $rewards->groupBy('shop_name');

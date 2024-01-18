@@ -179,7 +179,7 @@
                 // Cập nhật tên của nút
 
 
-                $(this).text("Spiniing...");
+                $(this).text("Spining...");
             });
 
             $("#Circle-row").one("transitionend", function () {

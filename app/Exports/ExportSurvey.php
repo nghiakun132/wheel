@@ -12,6 +12,13 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class ExportSurvey implements FromQuery, WithHeadings, WithMapping
 {
+
+    protected $query;
+    public function __construct(array $query)
+    {
+        $this->query = $query;
+    }
+
     /**
      * @return \Illuminate\Support\Collection
      */
@@ -19,7 +26,17 @@ class ExportSurvey implements FromQuery, WithHeadings, WithMapping
 
     public function query(): \Illuminate\Database\Eloquent\Builder
     {
-        return User::where('shop_name', '<>', config('app.admin.name'))->with(['survey.question', 'survey.answer', 'reward.reward']);
+        $query = User::where('shop_name', '<>', config('app.admin.name'));
+        
+        if (!empty($this->query['store'])) {
+            $query = $query->where('shop_name', $this->query['store']);
+        }
+
+        if (!empty($this->query['date'])) {
+            $query = $query->where('created_at', $this->query['date']);
+        }
+
+        return $query->with(['survey.question', 'survey.answer', 'reward.reward']);
     }
 
     public function headings(): array
