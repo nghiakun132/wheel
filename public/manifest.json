@@ -1,0 +1,22 @@
+{
+    "short_name": "Samsung Wheel",
+    "name": "Samsung Wheel - Spin the Luck",
+    "icons": [
+      {
+        "src": "image/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "image/large-icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "index.php",
+    "background_color": "#FFFFFF",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#FFFFFF"
+  }
+  
