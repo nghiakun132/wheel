@@ -5,7 +5,7 @@
                 <img src="{{ asset('image/luckydraw-images-02.png') }}" width="70%"  />
             </div>
 
-            <div>
+            <div style="margin-top: 20%;">
                 <div id="Circle-02">
                     <img id="Circle-row" width="80%" src="{{asset('image/Luckydraw-giftfix-circle.png')}}" />
 

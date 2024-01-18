@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    @if(config('app.https') == true)
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    @endif
     <link rel="stylesheet" href="{{ asset('wheel/css/sweetalert2.min.css') }}"> 
     <link rel="manifest" href="{{asset('manifest.json')}}">
     <link rel="stylesheet" href="{{ asset('wheel/css/style.css') }}">
@@ -23,7 +25,9 @@
         gtag('config', 'UA-130950821-1');
     </script>
 
-    <title>Super Wheel | Standard</title>
+    <title>
+        {{config('app.name')}}
+    </title>
 </head>
 
 <style>
