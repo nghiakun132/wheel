@@ -22,9 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
 Route::post('/login', [AdminController::class, 'postLogin'])->name('admin.postLogin');
 
-Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
 
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/survey', [HomeController::class, 'index'])->name('index');
 
     Route::prefix('admin')->group(function () {
