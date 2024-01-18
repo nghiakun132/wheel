@@ -15,7 +15,7 @@ class HomeController extends Controller
 {
     public function submit(Request $request)
     {
-
+        \Log::info($request->all());
         DB::beginTransaction();
         try {
             $user = new User();
@@ -54,6 +54,7 @@ class HomeController extends Controller
             ]);
         } catch (Exception $e) {
             DB::rollBack();
+            report($e);
             return response()->json([
                 'message' => 'error',
             ]);

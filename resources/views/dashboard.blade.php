@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('wheel/css/style.css') }}">
-
+        <link href="{{ asset('css/font.css') }}" rel="stylesheet">
     <title>
         {{config('app.name')}}
     </title>
@@ -57,12 +57,12 @@
                     </div>
 
                     <div style="margin-top: 20%;">
-                    <div class="col-md-6 mx-auto text-center">
+                    <div class="col-md-6 mx-auto text-center" style="width: 80%;">
                 <div class="mb-4">
-                    <a href="{{route('index')}}" class="btn btn-primary btn-lg btn-block">Start</a>
+                    <a href="{{route('index')}}" class="btn btn-home btn-primary btn-lg btn-block">Start</a>
                 </div>
                 <div class="mb-2">
-                    <a href="{{route('admin.logout')}}" class="btn btn-danger btn-lg btn-block">Logout</a>
+                    <a href="{{route('admin.logout')}}" class="btn btn-home btn-danger btn-lg btn-block">Log out</a>
                 </div>
             </div>
                     </div>

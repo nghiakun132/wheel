@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    {{-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'> --}}
     @if(config('app.https') == true)
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endif
     <link rel="stylesheet" href="{{ asset('wheel/css/sweetalert2.min.css') }}"> 
     <link rel="manifest" href="{{asset('manifest.json')}}">
     <link rel="stylesheet" href="{{ asset('wheel/css/style.css') }}">
+    <link href="{{ asset('css/font.css') }}" rel="stylesheet">
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script>
@@ -37,8 +40,12 @@
 
     #next-btn,
     #btn-spin {
-        border-radius: 20px;
-        width: 50%;
+        border-radius: 38px;
+        width: 98%;
+        padding: 5px;
+        font-size: 35px;
+        bottom: 10px;
+        position: fixed;
     }
 </style>
 
@@ -61,8 +68,8 @@
                 <div class="d-flex justify-content-center mt-4">
                     <button class="btn btn-primary" id="next-btn" onclick="nextPrev(1)">Next</button>
 
-                    <button class="btn btn-danger" type="button" id="btn-spin" style="display:none" onclick="">
-                        Xoay
+                    <button class="btn btn-primary" type="button" id="btn-spin" style="display:none" onclick="">
+                        SPIN
                     </button>
                 </div>
 
@@ -89,6 +96,7 @@
 
                 } else {
                     $("#prev-btn").css("display", "inline");
+                    $('.d-flex').css('position', 'relative!important');
                     $("#form-footer").removeClass("justify-content-end").addClass("justify-content-between");
                 }
 
@@ -171,7 +179,7 @@
                 // Cập nhật tên của nút
 
 
-                $(this).text("Đang xoay...");
+                $(this).text("Spiniing...");
             });
 
             $("#Circle-row").one("transitionend", function () {

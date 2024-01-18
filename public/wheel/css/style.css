@@ -1,5 +1,5 @@
 body {
-  background-color: #ECEFF1;
+  background-color: #ffffff;
 }
 
 input[type=text],
@@ -96,9 +96,6 @@ input[type=submit]:hover {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 
-.register {
-  margin-top: 50px;
-}
 
 .logo {
   margin-bottom: 35%;

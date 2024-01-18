@@ -6,7 +6,7 @@
             </div>
 
             <div class="group-question">
-                <ul class="list-group list-group-numbered">
+                <ul class="list-group list-group-numbered" style="margin-bottom: 40px;">
                     @foreach($questions as $question)
                     <li class="list-group-item">
                         <b>{{$question->question}}</b>
@@ -30,3 +30,28 @@
         </div>
     </div>
 </section>
+<style>
+    #next-btn, #btn-spin {
+    border-radius: 38px;
+    width: 98%;
+    padding: 5px;
+    font-size: 35px;
+    bottom: 10px;
+    position: relative !important;
+}
+.list-group-numbered>li::before {
+    content: counters(section, ".") ". ";
+    counter-increment: section;
+    font-family: 'SamsungSharpSans-Bold', sans-serif;
+}
+.list-group-numbered>li>b {
+    font-family: 'SamsungSharpSans-Bold', sans-serif;
+}
+.logo {
+    margin-bottom: 15%;
+    margin-top: 30px;
+}
+.list-group-item {
+    border: none;
+}
+</style>

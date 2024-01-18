@@ -30,13 +30,13 @@ body {
  */
 
 
-h1, h2, h3, h4, h5, h6{
+/* h1, h2, h3, h4, h5, h6{
   margin-bottom: 0.5rem;
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
-}
+} */
 
 h1 {
   font-size: 2.5rem;
@@ -185,7 +185,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
+  /* font-family: inherit; 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */

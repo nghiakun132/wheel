@@ -1,14 +1,71 @@
-@font-face {
+/* @font-face { */
+    /* font-family: 'MyCustomFont'; */
+    /* src: url('./font/iCiel-SamsungSharpSans-Bold_SMCPS.ttf') format('truetype'); */
+    /* src: url('./font/SamsungSharpSans-Medium_SMCP 2.ttf') format('truetype'); */
+    /* src: url('./font/SamsungSharpSans-Regular_SMCPS 5.ttf') format('truetype'); */
+    /* src: url('./font/Signature Samsung.otf') format('truetype');  */
+/* } */
+
+/* body {
     font-family: 'MyCustomFont';
+} */
+  
+@font-face {
+    font-family: 'SamsungSharpSans-Bold';
     src: url('./font/iCiel-SamsungSharpSans-Bold_SMCPS.ttf') format('truetype');
-    /* src: url('./font/SamsungSharpSans-Medium_SMCP 2.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SamsungSharpSans-Medium';
+    src: url('./font/SamsungSharpSans-Medium_SMCP 2.ttf') format('truetype');
+    font-weight: 500; 
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SamsungSharpSans-Regular';
     src: url('./font/SamsungSharpSans-Regular_SMCPS 5.ttf') format('truetype');
-    src: url('./font/Signature Samsung.otf') format('truetype'); */
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    font-family: 'MyCustomFont';
+    font-family: 'SamsungSharpSans-Regular', sans-serif !important;
 }
-  
+
+h1 {
+    font-family: 'SamsungSharpSans-Bold', sans-serif;
+    font-weight: bold;
+}
+
+h2 {
+    font-family: 'SamsungSharpSans-Medium', sans-serif;
+    font-weight: 500;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #6DC5C9;
+    border-color: #6DC5C9;
+    font-family: 'SamsungSharpSans-Bold', sans-serif;
+    text-transform: uppercase;
+  }
+  .btn-home {
+    padding: 3.5rem 3rem !important;
+    border-radius: 2.5rem !important;
+    margin-bottom: 4rem;
+    font-size: 33pt !important;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #219FFF !important;
+    border-color: #219FFF !important;
+    font-family: 'SamsungSharpSans-Bold', sans-serif;
+    text-transform: uppercase;
+}
+.fw-bold{
+    font-family: 'SamsungSharpSans-Bold', sans-serif;
+    margin-bottom: 0px !important;
+    font-size: 20px;
+}
