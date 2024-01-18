@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Admin;
 use App\Models\Survey;
 use App\Models\User;
 use Illuminate\Support\Arr;
@@ -26,14 +27,17 @@ class ExportSurvey implements FromQuery, WithHeadings, WithMapping
 
     public function query(): \Illuminate\Database\Eloquent\Builder
     {
-        $query = User::where('shop_name', '<>', config('app.admin.name'));
-        
+        $shop = Admin::where('name', '<>', config('app.admin.name'))->pluck('name')->toArray();
+
+        $query = User::whereIn('shop_name', $shop)
+            ->where('shop_name', '<>', config('app.admin.name'));
+
         if (!empty($this->query['store'])) {
             $query = $query->where('shop_name', $this->query['store']);
         }
 
         if (!empty($this->query['date'])) {
-            $query = $query->where('created_at', $this->query['date']);
+            $query = $query->whereDate('created_at', $this->query['date']);
         }
 
         return $query->with(['survey.question', 'survey.answer', 'reward.reward']);
@@ -68,7 +72,7 @@ class ExportSurvey implements FromQuery, WithHeadings, WithMapping
 
         return [
             $user->id,
-            $user->reward->reward->shop_name,
+            $user->shop_name,
             $user->name,
             $user->email,
             $user->phone,
@@ -77,7 +81,7 @@ class ExportSurvey implements FromQuery, WithHeadings, WithMapping
             Arr::get($arrayAnswer, 'cau_3'),
             Arr::get($arrayAnswer, 'cau_4'),
             Arr::get($arrayAnswer, 'cau_5'),
-            $user->reward->reward->reward_name,
+            $user->reward ? ($user->reward->reward ? $user->reward->reward->reward_name : '') : '',
             $user->created_at,
         ];
     }
