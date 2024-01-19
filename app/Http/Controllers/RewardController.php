@@ -35,11 +35,13 @@ class RewardController extends Controller
 
     public function rewarded()
     {
+        $date = request()->get('date');
         $rewards = Reward::where('shop_name', '<>', config('app.admin.name'))
-            ->withCount('rewarded')->get();
-
+            ->withCount(['rewarded' => function ($query) use ($date) {
+                return $query->whereDate('created_at', $date);
+            }])->get();
+ 
         $rewards = $rewards->groupBy('shop_name');
-
         return view('admin.rewarded.index', compact('rewards'));
     }
 }
