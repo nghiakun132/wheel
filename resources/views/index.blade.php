@@ -257,6 +257,48 @@
             function getRandomNumber(min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
+            document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;
+
+function getTouches(evt) {
+  return evt.touches ||             // trình duyệt API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+    
+    // Phát hiện vuốt sang trái
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            /* vuốt sang trái */
+            window.history.back();
+        } else {
+            /* vuốt sang phải */
+        }                       
+    } 
+    // reset values
+    xDown = null;
+    yDown = null;                                             
+};
+
         </script>
 </body>
 
