@@ -11,7 +11,17 @@ class HomeController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+        $checkQuantityReward = Reward::where('shop_name', auth()->user()->name)
+            ->where('reward_quantity', '>', 0)
+            ->get();
+
+        $isHaveReward = 'true';
+
+        if ($checkQuantityReward->isEmpty()) {
+            $isHaveReward = 'false';
+        }
+
+        return view('dashboard', compact('isHaveReward'));
     }
 
     public function index()
@@ -28,12 +38,12 @@ class HomeController extends Controller
             }
         }
         $rewardIds = $rewards->toArray();
-      
+
         $listRewardHaveQuantity = (Arr::pluck($listRewardHaveQuantity, 'id'));
 
         $randomProducts = $this->getRandomProductExcluding($rewardIds, $listRewardHaveQuantity);
         $randomProduct = $randomProducts['id'];
-     
+
         $image = asset($randomProducts['images']);
 
         $name = $randomProducts['reward_name'];
@@ -50,14 +60,14 @@ class HomeController extends Controller
 
         // Tính tổng số lượng
         $totalQuantity = array_sum(array_column($availableProducts, 'reward_quantity'));
-  
+
         // Tính tỉ lệ phần trăm cho từng sản phẩm dựa trên số lượng giảm dần
         $tilesanpham = array_map(function ($product) use ($totalQuantity) {
             return $product['reward_quantity'] / $totalQuantity;
         }, $availableProducts);
 
-        $randomNumber =  rand(0, 100) / 100;
-   
+        $randomNumber = rand(0, 100) / 100;
+
         // Chọn sản phẩm dựa trên số ngẫu nhiên
         $cumulativePercentage = 0;
         foreach ($tilesanpham as $index => $tile) {

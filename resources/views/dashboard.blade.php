@@ -9,6 +9,8 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('wheel/css/style.css') }}">
         <link href="{{ asset('css/font.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('wheel/css/sweetalert2.min.css') }}"> 
+
     <title>
         {{config('app.name')}}
     </title>
@@ -59,7 +61,7 @@
                     <div style="margin-top: 20%;">
                     <div class="col-md-6 mx-auto text-center" style="width: 80%;">
                 <div class="mb-4">
-                    <a href="{{route('index')}}" class="btn btn-home btn-primary btn-lg btn-block">Start</a>
+                    <a id="redirect-to-start" href="{{route('index')}}" class="btn btn-home btn-primary btn-lg btn-block">Start</a>
                 </div>
                 <div class="mb-2">
                     <a href="{{route('admin.logout')}}" class="btn btn-home btn-danger btn-lg btn-block">Log out</a>
@@ -70,16 +72,26 @@
             </div>
     </div>
     </section>
-
-    <!-- <div class="row">
-            <div class="col-12">
-                <div class="logo">
-                    <img src="{{ asset('image/luckydraw-images-02.png') }}" width="70%" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-          
-        </div> -->
     </div>
+
+    <script src="{{ asset('wheel/js/sweetalert2.min.js') }}"></script>
+    <script>
+        document.getElementById('redirect-to-start').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const isHaveReward = {{ $isHaveReward }};
+
+            if(!isHaveReward) {
+                swal.fire({
+                    type: 'warning',
+                    title: 'Số lượng quà đã hết',
+                    confirmButtonText: 'OK'
+                });
+
+                return;
+            }
+            
+            window.location.href = this.href;
+        });
+    </script>
 </body>
