@@ -69,7 +69,19 @@
                 _token: "{{ csrf_token() }}"
             },
             success: function(data) {
-                window.location.reload();
+                if (data.status == 'success') {
+                    swal({
+                        type: 'success',
+                        title: "Cập nhật thành công!",
+                    })
+                }
+            },
+            error: function(data) {
+                    swal({
+                        type: 'error',
+                        title: "Cập nhật thất bại!",
+                        // 'html': 'Cập nhật thành công!'
+                    })
             }
         });
     }
