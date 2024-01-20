@@ -22,6 +22,21 @@
                     <input type="text" class="form-control" id="phone" name="phone"
                         oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
                 </div>
+                <div class="mb-3 form-group">
+                    <label for="phone" class="form-label fw-bold">Năm sinh</label>
+                    <input type="number" class="form-control" id="age" name="age"
+                        oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="phone" class="form-label fw-bold">Giới tính</label>
+                    <select name="sex" id="sex" class="form-control"
+                        onchange="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                </div>
+              
                 <input type="hidden" name="shop_name" value="{{auth()->user()->name}}">
             </div>
         </div>

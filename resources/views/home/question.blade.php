@@ -37,7 +37,7 @@
     padding: 5px;
     font-size: 35px;
     bottom: 10px;
-    position: relative !important;
+    /* position: relative !important; */
 }
 .list-group-numbered>li::before {
     content: counters(section, ".") ". ";

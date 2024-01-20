@@ -21,7 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'shop_name',
+        'age',
+        'sex'
     ];
 
     public function survey()

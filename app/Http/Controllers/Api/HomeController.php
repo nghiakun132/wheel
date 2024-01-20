@@ -19,10 +19,13 @@ class HomeController extends Controller
         DB::beginTransaction();
         try {
             $user = new User();
-            $user->name = $request->name;
-            $user->phone = $request->phone;
-            $user->email = $request->email;
-            $user->shop_name = $request->shop_name;
+            $user->name = $request->input('name', '');
+            $user->phone = $request->input('phone', '');
+            $user->email = $request->input('email', '');
+            $user->shop_name = $request->input('shop_name', '');
+            $user->age = $request->input('age', '');
+            $user->sex = $request->input('sex', '');
+
             $user->save();
 
             $answer = $request->answer;

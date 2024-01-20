@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'> --}}
-    @if(config('app.https') == true)
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    @if (config('app.https') == true)
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endif
-    <link rel="stylesheet" href="{{ asset('wheel/css/sweetalert2.min.css') }}"> 
-    <link rel="manifest" href="{{asset('manifest.json')}}">
+    <link rel="stylesheet" href="{{ asset('wheel/css/sweetalert2.min.css') }}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
     <link rel="stylesheet" href="{{ asset('wheel/css/style.css') }}">
     <link href="{{ asset('css/font.css') }}" rel="stylesheet">
 
@@ -29,7 +29,7 @@
     </script>
 
     <title>
-        {{config('app.name')}}
+        {{ config('app.name') }}
     </title>
 </head>
 
@@ -45,7 +45,7 @@
         padding: 5px;
         font-size: 35px;
         bottom: 10px;
-        position: fixed;
+        /* position: fixed; */
     }
 
     .swal2-container {
@@ -98,29 +98,39 @@
                     $("#prev-btn").hide();
                     $("#button_groub").css({
                         "position": "absolute",
-                        "bottom": "15px"
+                        "top": "90%"
                     });
                     $("#form-footer").removeClass("justify-content-between").addClass("justify-content-end");
+                    $("#next-btn").css("position", "relative")
 
                 } else {
                     $("#prev-btn").css("display", "inline");
                     $("#button_groub").css({
                         "position": "relative",
-                        "bottom": "15px"
+                        "bottom": "15px",
                     });
                     $("#form-footer").removeClass("justify-content-end").addClass("justify-content-between");
+                }
+
+                if (n == 1) {
+                    $("#next-btn").css("position", "relative")
+
+                } else if (n == 2){
+                    $("#btn-spin").css("position", "fixed")
                 }
 
                 if (n == (x.length - 1)) {
                     $("#button_groub").css({
                         "position": "absolute",
-                        "bottom": "15px"
+                        "bottom": "15px",
                     });
                     $('#next-btn').hide();
                     $('#btn-spin').show();
+
                 } else {
                     $('#next-btn').show();
                     $('#btn-spin').hide();
+
                 }
 
             }
@@ -134,7 +144,7 @@
 
                 if (currentTab == 1) {
                     let count = 0;
-                    $(".form-check-input").each(function () {
+                    $(".form-check-input").each(function() {
                         if ($(this).is(":checked")) {
                             count++;
                         }
@@ -163,6 +173,7 @@
                 const name = $('#name').val();
                 const email = $('#email').val();
                 const phone = $('#phone').val();
+                const age = $('#age').val();
 
                 if (name == '') {
                     $('#name').addClass('is-invalid');
@@ -182,13 +193,19 @@
                     return false;
                 }
 
+                if (age == '') {
+                    $('#age').addClass('is-invalid');
+
+                    return false;
+                }
+
                 return true;
             }
         </script>
         <script>
-            $("#btn-spin").on("click", function () {
+            $("#btn-spin").on("click", function() {
                 // Xoay Circle-01
-                gif = {{$randomProduct}}
+                gif = {{ $randomProduct }}
                 row = (7200 + (gif * 90)) - (getRandomNumber(25, 65));
                 $("#Circle-row").css("transform", "rotate(" + row + "deg)");
                 // Cập nhật tên của nút
@@ -197,7 +214,7 @@
                 $(this).text("SPINING...");
             });
 
-            $("#Circle-row").one("transitionend", function () {
+            $("#Circle-row").one("transitionend", function() {
                 //     const listImage = {
                 //     1: "{{ asset('image/voucher.png') }}",
                 //     2:"{{ asset('image/sticker.png') }}",
@@ -212,27 +229,27 @@
                 //         4: "Pin"
                 //     }
 
-                    const data = $("#form-register").serializeArray();
+                const data = $("#form-register").serializeArray();
 
-                    data.push({
-                        name: 'reward',
-                        value: gif
-                    });
+                data.push({
+                    name: 'reward',
+                    value: gif
+                });
 
-                    const image = "{{ $image}}";
-                    const name = "{{ $name }}";
-                    swal({
+                const image = "{{ $image }}";
+                const name = "{{ $name }}";
+                swal({
                         type: 'success',
                         title: "Congratulations!",
-                        'html': name + ' <br><br><b><img src="' +  image +
+                        'html': name + ' <br><br><b><img src="' + image +
                             '"" height="150px" /></b>'
-                        
+
                     })
                     .then((result) => {
                         callAjax(data);
-                        
+
                     })
-                });
+            });
 
             function callAjax(data) {
 
@@ -245,11 +262,11 @@
                     },
                     success: function(response) {
                         if (response.message == 'success') {
-                            window.location.href = "{{route('dashboard')}}"
+                            window.location.href = "{{ route('dashboard') }}"
                         }
                     },
-                    error: function (response) {
-                        window.location.href = "{{route('dashboard')}}"
+                    error: function(response) {
+                        window.location.href = "{{ route('dashboard') }}"
                     }
                 });
             }
@@ -257,48 +274,48 @@
             function getRandomNumber(min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
             }
-            document.addEventListener('touchstart', handleTouchStart, false);        
-document.addEventListener('touchmove', handleTouchMove, false);
+            document.addEventListener('touchstart', handleTouchStart, false);
+            document.addEventListener('touchmove', handleTouchMove, false);
 
-var xDown = null;                                                        
-var yDown = null;
+            var xDown = null;
+            var yDown = null;
 
-function getTouches(evt) {
-  return evt.touches ||             // trình duyệt API
-         evt.originalEvent.touches; // jQuery
-}                                                     
+            function getTouches(evt) {
+                return evt.touches || // trình duyệt API
+                    evt.originalEvent.touches; // jQuery
+            }
 
-function handleTouchStart(evt) {
-    const firstTouch = getTouches(evt)[0];                                      
-    xDown = firstTouch.clientX;                                      
-    yDown = firstTouch.clientY;                                      
-};                                                
+            function handleTouchStart(evt) {
+                const firstTouch = getTouches(evt)[0];
+                xDown = firstTouch.clientX;
+                yDown = firstTouch.clientY;
+            };
 
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
+            function handleTouchMove(evt) {
+                if (!xDown || !yDown) {
+                    return;
+                }
 
-    var xUp = evt.touches[0].clientX;                                    
-    var yUp = evt.touches[0].clientY;
+                var xUp = evt.touches[0].clientX;
+                var yUp = evt.touches[0].clientY;
 
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-    
-    // Phát hiện vuốt sang trái
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            /* vuốt sang trái */
-            window.history.back();
-        } else {
-            /* vuốt sang phải */
-        }                       
-    } 
-    // reset values
-    xDown = null;
-    yDown = null;                                             
-};
+                var xDiff = xDown - xUp;
+                var yDiff = yDown - yUp;
 
+                // Phát hiện vuốt sang trái
+                if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                    /*most significant*/
+                    if (xDiff > 0) {
+                        /* vuốt sang trái */
+                        window.history.back();
+                    } else {
+                        /* vuốt sang phải */
+                    }
+                }
+                // reset values
+                xDown = null;
+                yDown = null;
+            };
         </script>
 </body>
 
