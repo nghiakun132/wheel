@@ -52,7 +52,7 @@ class ExportSurvey implements FromQuery, WithHeadings, WithMapping
             'Email',
             'Số điện thoại',
             'Giới tính',
-            'Năm sinh',
+            'Tuổi',
             'Câu 1',
             'Câu 2',
             'Câu 3',

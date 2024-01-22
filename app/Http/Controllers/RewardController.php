@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Reward;
 use DB;
 use Exception;
@@ -11,7 +12,10 @@ class RewardController extends Controller
 {
     public function index()
     {
+        $admins = Admin::where('role', 'store')->get()->pluck('name');
+           
         $rewards = Reward::where('shop_name', '<>', config('app.admin.name'))
+            ->whereIn('shop_name', $admins)
             ->get();
 
         $rewards = $rewards->groupBy('shop_name');
@@ -56,9 +60,12 @@ class RewardController extends Controller
     public function rewarded()
     {
         $date = request()->get('date');
-        $rewards = Reward::where('shop_name', '<>', config('app.admin.name'));
 
-        if (!$date) {
+        $admins = Admin::where('role', 'store')->get()->pluck('name');
+
+        $rewards = Reward::where('shop_name', '<>', config('app.admin.name'))->whereIn('shop_name', $admins);
+
+        if (!empty($date)) {
             $rewards = $rewards->withCount([
                 'rewarded' => function ($query) use ($date) {
                     return $query->whereDate('created_at', $date);

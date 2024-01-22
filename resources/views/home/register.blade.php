@@ -23,7 +23,7 @@
                         oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
                 </div>
                 <div class="mb-3 form-group">
-                    <label for="phone" class="form-label fw-bold">Năm sinh</label>
+                    <label for="phone" class="form-label fw-bold">Tuổi</label>
                     <input type="number" class="form-control" id="age" name="age"
                         oninput="$(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid'): ''">
                 </div>

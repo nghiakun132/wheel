@@ -15,7 +15,7 @@
                                     <input type="date" class="form-control" id="date" name="date"
                                         placeholder="dd/mm/yyyy" autocomplete="off" value="{{request()->get('date')}}">
                                 </div>
-                                <div class="col-md-2 mt-2">
+                                <div class="col-md-4 mt-2">
                                     <a href="{{ route('admin.rewarded') }}" class="btn btn-secondary">Reset</a>
                                     <button type="submit" class="btn btn-primary" id="btn-search">Search</button>
                                 </div>
